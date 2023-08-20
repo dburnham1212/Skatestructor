@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS tricks CASCADE;
+
+-- CREATE USERS
+CREATE TABLE tricks (
+  id SERIAL PRIMARY KEY,
+  trick_name VARCHAR(50) NOT NULL,
+  difficulty INTEGER NOT NULL
+);

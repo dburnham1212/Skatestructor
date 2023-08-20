@@ -8,7 +8,7 @@ const TrickListItem = (props) => {
   const trickListChallenges = challenges.filter(challenge => props.id === challenge.trick_id);
   
   const displayChallenges = trickListChallenges.map((challenge) => {
-    const challengeRoute = `/tricks/${challenge.trick_id}/challenge/${challenge.id}`
+    const challengeRoute = `/trick/${challenge.trick_id}/challenge/${challenge.id}`
     
     return(
       <li key={challenge.id} className="list-group-item" onClick={() => navigate(challengeRoute)}>

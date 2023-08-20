@@ -7,6 +7,7 @@ const morgan = require('morgan')
 const cors = require('cors');
 
 const userRoutes = require('./routes/usersRoutes');
+const trickRoutes = require('./routes/trickRoutes')
 
 const app = express();
 app.use(morgan(ENVIRONMENT));
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/users', userRoutes);
+app.use('/tricks', trickRoutes);
 
 app.listen(PORT, (error) => {
   if(!error){

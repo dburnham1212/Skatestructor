@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../stylesheets/profile.css"
-import profiles from "../mocks/profiles";
 import axios from "axios";
 
 
