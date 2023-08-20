@@ -1,0 +1,8 @@
+
+-- INSTRUCTION FOR MANUALS
+INSERT INTO trick_instructions (trick_id, title, instruction) VALUES (1, 'Find a Suitable Area', 'Start in an open and flat area with a smooth surface. It''s important to practice in a safe environment to avoid accidents.');
+INSERT INTO trick_instructions (trick_id, title, instruction) VALUES (1, 'Foot Placement', 'Stand on your skateboard with your front foot placed in the middle of the deck, perpendicular to the board. Your back foot should be placed on the tail, angled diagonally.');
+INSERT INTO trick_instructions (trick_id, title, instruction) VALUES (1, 'Start Riding', 'Push off with your back foot to gain some speed. As you start moving, keep your weight centered over the skateboard and get comfortable riding.');
+INSERT INTO trick_instructions (trick_id, title, instruction) VALUES (1, 'Shift Your Weight', 'As you gain some speed, shift your weight towards the tail of the skateboard by leaning slightly back. Your front foot should become lighter, and your back foot''s pressure on the tail will raise the front wheels off the ground.');
+INSERT INTO trick_instructions (trick_id, title, instruction) VALUES (1, 'Balancing Act', 'Finding the right balance point is crucial. Use your arms for balance, spreading them out to the sides. Keep your gaze forward to maintain balance.');
+INSERT INTO trick_instructions (trick_id, title, instruction) VALUES (1, 'Control', 'To maintain the manual, make small adjustments with your body and arms. If the front end of the skateboard starts to dip, shift your weight slightly forward. If the back end starts to dip, shift your weight backward.');

@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS trick_instructions CASCADE;
+
+-- CREATE USERS
+CREATE TABLE trick_instructions (
+  id SERIAL PRIMARY KEY,
+  trick_id INTEGER NOT NULL REFERENCES tricks(id) ON DELETE CASCADE NOT NULL,
+  title VARCHAR(50) NOT NULL,
+  instruction VARCHAR(1000) NOT NULL
+);
