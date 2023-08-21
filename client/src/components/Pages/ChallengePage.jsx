@@ -9,7 +9,8 @@ const ChallengePage = () => {
 
   const [trickInstructions, setTrickInstructions] = useState([])
   const [trick, setTrick] = useState({});
-  
+  const [challenge, setChallenge] = useState({});
+
   useEffect(() => {
     // GET THE CURRENT TRICK
     axios
@@ -17,6 +18,19 @@ const ChallengePage = () => {
     .then((res) => {
       if (res.status === 200) {
         setTrick(res.data.trick);
+      }
+    })
+    .catch((e) => {
+      alert(e);
+    });
+
+    //GET THE CHALLENGE INFO
+    axios
+    .get(`/challenge/${challenge_id}`)
+    .then((res) => {
+      if (res.status === 200) {
+        console.log(res)
+        setChallenge(res.data.challenge);
       }
     })
     .catch((e) => {
@@ -36,9 +50,6 @@ const ChallengePage = () => {
     });
   }, [])
 
-  
-  const challenge =  challenges.filter(challenge => Number(challenge_id) === challenge.id)[0];
-
   const trickInstructionDisplay = trickInstructions.map((instruction, index) => {
     return(
       <li className="list-group-item" key={instruction.id}>
@@ -52,13 +63,13 @@ const ChallengePage = () => {
     <div>
       <div className="card m-3">
         <div className="card-header text-center">
-          <h1>Challenge: {challenge.name}</h1>
+          <h1>Challenge: {challenge.title}</h1>
         </div>
         <div className="card-body">
           <h2>Trick: {trick.trick_name}</h2>
           <p>Description: {challenge.description}</p>
           <div className="d-flex">
-            <h6>Exp: 300</h6>
+            <h6>Exp: {challenge.exp_val}</h6>
 
           </div>
         </div>

@@ -15,7 +15,6 @@ function App() {
         <Routes>
           {/* Home Page*/}
           <Route path="/" element={ <Home/>}/>
-
           {/* Challenge Page */}
           <Route path="trick/:trick_id/challenge/:challenge_id" element={<ChallengePage/>}/>
         </Routes>
