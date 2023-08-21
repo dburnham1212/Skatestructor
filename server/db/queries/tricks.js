@@ -9,4 +9,13 @@ const getAllTricks = async () => {
   }
 };
 
-module.exports = { getAllTricks };
+const getTrickById = async (id) => {
+  try {
+    const data = await db.query('SELECT * FROM tricks WHERE id = $1', [id]);
+    return data.rows[0];
+  } catch (error) {
+    throw error;
+  }
+}
+
+module.exports = { getAllTricks, getTrickById };

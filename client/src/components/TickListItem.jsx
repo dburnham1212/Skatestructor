@@ -1,18 +1,33 @@
-import React from "react";
-import challenges from "../mocks/challenges";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
+import axios from "axios";
 
 const TrickListItem = (props) => {
   const navigate = useNavigate();
 
-  const trickListChallenges = challenges.filter(challenge => props.id === challenge.trick_id);
+  const [challenges, setChallenges] = useState([]);
+
+  useEffect(() => {
+    // GET THE CHALLENGES FOR THE TRICK
+    axios
+    .get(`/challenge/trick/${props.id}`)
+    .then((res) => {
+      if (res.status === 200) {
+        console.log(res.data);
+        setChallenges(res.data.challenges);
+      }
+    })
+    .catch((e) => {
+      alert(e);
+    });
+  }, [])
   
-  const displayChallenges = trickListChallenges.map((challenge) => {
+  const displayChallenges = challenges.map((challenge) => {
     const challengeRoute = `/trick/${challenge.trick_id}/challenge/${challenge.id}`
     
     return(
       <li key={challenge.id} className="list-group-item" onClick={() => navigate(challengeRoute)}>
-        {challenge.name}
+        {challenge.title}
       </li>
     )
   })

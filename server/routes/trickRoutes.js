@@ -14,4 +14,17 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+  tricks
+    .getTrickById(req.params.id)
+    .then((trick) => {
+      res.json({ trick });
+    })
+    .catch((e) => {
+      res.status(500).json({
+        error: `error getting trick by id: ${e.message}`,
+      });
+    });
+});
+
 module.exports = router;
