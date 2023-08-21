@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
-import challenges from "../../mocks/challenges";
-import tricks from "../../mocks/tricks";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 
 const ChallengePage = () => {
@@ -29,7 +29,6 @@ const ChallengePage = () => {
     .get(`/challenge/${challenge_id}`)
     .then((res) => {
       if (res.status === 200) {
-        console.log(res)
         setChallenge(res.data.challenge);
       }
     })
@@ -68,9 +67,15 @@ const ChallengePage = () => {
         <div className="card-body">
           <h2>Trick: {trick.trick_name}</h2>
           <p>Description: {challenge.description}</p>
-          <div className="d-flex">
+          <div className="d-flex align-items-center justify-content-between">
             <h6>Exp: {challenge.exp_val}</h6>
-
+            <div className="d-flex align-items-center gap-2">
+              <h6>Mark Completed: </h6>
+              <button className="btn btn-light">
+                <FontAwesomeIcon className="text-success" icon={faCheck} />
+              </button>
+            </div>
+            
           </div>
         </div>
       </div>
