@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import tricks from "../mocks/tricks"
 import TrickListItem from "./TickListItem";
 import axios from 'axios'
 
@@ -8,7 +7,7 @@ const TrickList = () => {
 
   useEffect(() => {
     axios
-    .get(`http://localhost:8080/tricks`)
+    .get(`/tricks`)
     .then((res) => {
       if (res.status === 200) {
         setTricks(res.data.tricks);
