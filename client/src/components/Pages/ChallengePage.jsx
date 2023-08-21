@@ -25,10 +25,10 @@ const ChallengePage = () => {
   const trick = tricks.filter(trick => Number(trick_id) === trick.id)[0];
   const challenge =  challenges.filter(challenge => Number(challenge_id) === challenge.id)[0];
 
-  const trickInstructionDisplay = trickInstructions.map((instruction) => {
+  const trickInstructionDisplay = trickInstructions.map((instruction, index) => {
     return(
       <li className="list-group-item" key={instruction.id}>
-        <h5> {instruction.title}</h5>
+        <h5> {index + 1}: {instruction.title}</h5>
         <h6> {instruction.instruction} </h6>
       </li>
     );
@@ -36,12 +36,19 @@ const ChallengePage = () => {
 
   return (
     <div>
-      <h1>Challenge: {challenge.name}</h1>
-      <h2>Trick Type: {trick.name}</h2>
-      <p>Description: {challenge.description}</p>
-      <div className="card px-3 mx-3">
-        <h1 className="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Instructions (Click to expand)</h1>
-        <ul id="collapseOne" className="list-group collapse mb-3">
+      <div className="card m-3 p-3">
+        <h1>Challenge: {challenge.name}</h1>
+        <h2>Trick Type: {trick.name}</h2>
+        <p>Description: {challenge.description}</p>
+      </div>
+      <div className="card mx-3 ">
+        <h1 className="btn btn-light" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#collapseOne" 
+          aria-expanded="true" 
+          aria-controls="collapseOne"
+        > Trick Instructions (Click to expand)</h1>
+        <ul id="collapseOne" className="list-group collapse my-3 mx-3">
           {trickInstructionDisplay}
         </ul>
       </div>
