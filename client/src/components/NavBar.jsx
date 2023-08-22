@@ -2,7 +2,7 @@ import React from "react";
 
 const NavBar = () => {
   return(
-    <nav className="navbar navbar-expand-md navbar-light bg-dark py-4">
+    <nav className="navbar navbar-expand-md navbar-light fixed-top bg-dark py-4">
       <div className="container-fluid">
         <a className="navbar-brand text-light px-4" href="#">Skatestructor</a>
         <button 
@@ -24,6 +24,12 @@ const NavBar = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link text-light" href="#">Profile</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link text-light" href="/login">Login</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link text-light" href="/register">Register</a>
             </li>
           </ul>
         </div>

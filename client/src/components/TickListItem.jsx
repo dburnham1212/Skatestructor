@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
+import "../stylesheets/trickList.css"
 import axios from "axios";
 
 const TrickListItem = (props) => {
@@ -26,7 +27,7 @@ const TrickListItem = (props) => {
     const challengeRoute = `/trick/${challenge.trick_id}/challenge/${challenge.id}`
     
     return(
-      <li key={challenge.id} className="list-group-item" onClick={() => navigate(challengeRoute)}>
+      <li key={challenge.id} className="list-group-item challenge-list-item" onClick={() => navigate(challengeRoute)}>
         {challenge.title}
       </li>
     )

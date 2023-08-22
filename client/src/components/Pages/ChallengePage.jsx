@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
+import ProgressBar from "../ProgressBar";
 
 const ChallengePage = () => {
   const { trick_id, challenge_id } = useParams();
@@ -60,6 +61,7 @@ const ChallengePage = () => {
 
   return (
     <div>
+      <ProgressBar/>
       <div className="card m-3">
         <div className="card-header text-center">
           <h1>Challenge: {challenge.title}</h1>

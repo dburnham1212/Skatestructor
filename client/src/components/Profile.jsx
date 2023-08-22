@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../stylesheets/profile.css"
 import axios from "axios";
-import ProgressBar from "./ProgressBar";
 
 
 const Profile = () => {
