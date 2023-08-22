@@ -25,6 +25,8 @@ const NavBar = () => {
             <li className="nav-item">
               <a className="nav-link text-light" href="#">Profile</a>
             </li>
+          </ul>
+          <ul className="navbar-nav d-flex justify-content-end">
             <li className="nav-item">
               <a className="nav-link text-light" href="/login">Login</a>
             </li>

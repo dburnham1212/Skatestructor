@@ -10,11 +10,11 @@ const Login = () => {
         <form className="px-3">
           <div className="form-group pt-4">
             <label>Username</label>
-            <input className="form-control" placeholder="username"></input>
+            <input className="form-control" type="text" placeholder="username"></input>
           </div>
           <div className="form-group pt-4">
             <label>Password</label>
-            <input className="form-control" placeholder="password"></input>
+            <input className="form-control" type="password" placeholder="password"></input>
           </div>
           <div className="d-flex justify-content-end mx-2 my-4">
             <button className="btn btn-dark">Login</button>
