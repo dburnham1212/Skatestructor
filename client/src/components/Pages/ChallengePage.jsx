@@ -63,31 +63,33 @@ const ChallengePage = () => {
     <div>
       <ProgressBar/>
       <div className="card m-3">
-        <div className="card-header text-center">
-          <h1>Challenge: {challenge.title}</h1>
+        <div className="card-header d-flex justify-content-between">
+          <h4>Challenge: {challenge.title}</h4>
+          <h4>{trick.trick_name}</h4>       
         </div>
         <div className="card-body">
-          <h2>Trick: {trick.trick_name}</h2>
-          <p>Description: {challenge.description}</p>
+          <p>{challenge.description}</p>
+        </div>
+        <div className="card-footer">
           <div className="d-flex align-items-center justify-content-between">
             <h6>Exp: {challenge.exp_val}</h6>
+            
             <div className="d-flex align-items-center gap-2">
               <h6>Mark Completed: </h6>
               <button className="btn btn-light">
                 <FontAwesomeIcon className="text-success" icon={faCheck} />
               </button>
             </div>
-            
           </div>
         </div>
       </div>
       <div className="card mx-3 ">
-        <h1 className="btn btn-light" 
+        <button className="btn btn-light" 
           data-bs-toggle="collapse" 
           data-bs-target="#collapseOne" 
           aria-expanded="true" 
           aria-controls="collapseOne"
-        > Trick Instructions (Click to expand)</h1>
+        > Trick Instructions (Tap to expand)</button>
         <ul id="collapseOne" className="list-group collapse my-3 mx-3">
           {trickInstructionDisplay}
         </ul>
