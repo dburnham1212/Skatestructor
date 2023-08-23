@@ -9,13 +9,13 @@ const getUserById = async (id) => {
   }
 };
 
-const getUserByEmail = async (email) => {
+const getUserByUserName = async (userName) => {
   try {
-    const data = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+    const data = await db.query('SELECT * FROM users WHERE user_name = $1', [userName]);
     return data.rows[0];
   } catch (error) {
     throw error;
   }
 };
 
-module.exports = { getUserByEmail, getUserById };
+module.exports = { getUserById, getUserByUserName };

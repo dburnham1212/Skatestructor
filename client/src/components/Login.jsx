@@ -1,20 +1,15 @@
-import React, { useState }from "react";
+import React, { useContext, useState }from "react";
 import Cookies from 'js-cookie'
+import { authContext } from "../providers/AuthProvider";
 
 const Login = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onLogin = (event) => {
-    event.preventDefault();
-    if(Cookies.get('username')){
-      console.log("cookie found", Cookies.get('username'))
-    } else {
-      console.log("setting cookie", userName);
-      Cookies.set('username', userName, { expires: 7 });
-    }
-    
-  }
+  const {
+    userName,
+    setUserName,
+    password,
+    setPassword,
+    onLogin
+  } = useContext(authContext);
  
   return(
     <div className="d-flex justify-content-center py-5">
@@ -25,7 +20,7 @@ const Login = () => {
         <form className="px-3">
           <div className="form-group pt-4">
             <label className="form-label">Username</label>
-            <input className="form-control" type="text" onChange={(e) => setUserName(e.target.value)}placeholder="username"></input>
+            <input className="form-control" type="text" onChange={(e) => setUserName(e.target.value)} placeholder="username"></input>
           </div>
           <div className="form-group pt-4">
             <label className="form-label">Password</label>

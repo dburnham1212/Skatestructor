@@ -7,6 +7,7 @@ const morgan = require('morgan')
 const cors = require('cors');
 
 const userRoutes = require('./routes/usersRoutes');
+const authRoutes = require('./routes/authRoutes');
 const trickRoutes = require('./routes/trickRoutes')
 const trickInstructionRoutes = require('./routes/trickInstructionRoutes')
 const challengeRoutes = require('./routes/challengeRoutes')
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 app.use('/tricks', trickRoutes);
 app.use('/trickInstruction', trickInstructionRoutes);
 app.use('/challenge', challengeRoutes);
