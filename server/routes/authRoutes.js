@@ -1,12 +1,18 @@
 const router = require('express').Router();
 const users = require('../db/queries/users');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-router.get('/login', (req, res) => {
-  console.log("here");
+router.post('/login', (req, res) => {
+  const { userName, password } = req.body.user;
   users
-    .getUserByUserName("Mint")
+    .getUserByUserName(userName)
     .then((user) => {
-      res.json({ user });
+      if(bcrypt.compareSync(password, user.password)){
+        res.json({ user });
+      } else {
+        res.json('user not found')
+      }
     })
     .catch((e) => {
       res.status(500).json({
