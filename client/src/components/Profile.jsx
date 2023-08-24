@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import "../stylesheets/profile.css"
-import axios from "axios";
-
+import { authContext } from "../providers/AuthProvider";
 
 const Profile = () => {
-  const [user, setUser] = useState({});
-  
-  useEffect(() => {
-    axios
-    .get(`/users/${1}`)
-    .then((res) => {
-      if (res.status === 200) {
-        setUser(res.data.user);
-      }
-    })
-    .catch((e) => {
-      alert(e);
-    });
-  }, [])
+  const {
+    user
+  } = useContext(authContext);
 
   return (
     <div className="bg-light container-fluid border border-dark rounded-bottom border-top-0 py-3">

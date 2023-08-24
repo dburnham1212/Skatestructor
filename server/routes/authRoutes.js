@@ -8,10 +8,10 @@ router.post('/login', (req, res) => {
   users
     .getUserByUserName(userName)
     .then((user) => {
-      if(bcrypt.compareSync(password, user.password)){
+      if(user && bcrypt.compareSync(password, user.password)) {
         res.json({ user });
       } else {
-        res.json('user not found')
+        res.status(401).json({ error: "Incorrect email/password"});
       }
     })
     .catch((e) => {
@@ -19,6 +19,27 @@ router.post('/login', (req, res) => {
         error: `error getting user by username: ${e.message}`,
       });
     });
+});
+
+router.post('/register', async (req, res) => {
+  try {
+    const user = req.body.user;
+
+    const createdUser = await users.getUserByUserNameOrEmail(user.userName, user.email);
+    console.log(createdUser);
+    if (createdUser) {
+      return res.status(400).json({ error: 'Username or email already registered'});
+    } else if (user.password !== user.passwordConfirmation) {
+      return res.status(400).json({ error: 'Passwords did not match'});
+    }
+
+    user.password = bcrypt.hashSync(user.password, saltRounds);
+
+    const result = users.createUser(user);
+    res.json({result});
+  } catch(error) {
+      res.status(500).json({ error: error.message});
+  };
 });
 
 module.exports = router;

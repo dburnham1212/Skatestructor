@@ -8,17 +8,13 @@ export const authContext = createContext();
 
 // Create a Component wrapper from Context.Provider
 export default function AuthProvider(props) {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [user, setUser] = useState('');
-
-  useEffect(() => {
-    if(Cookies.get('userId')){
-      console.log("cookie found", Cookies.get('userId'))
-    } 
-  }, []);
-
   // Here is our Shared State Object
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [user, setUser] = useState(null);
+
   const onLogin = async (event) => {
     event.preventDefault();
     const user = { userName, password }
@@ -27,25 +23,42 @@ export default function AuthProvider(props) {
       user
     }
     ).then((res) => {
-      console.log(res);
+      if(res.data.user) {
+        setUser(res.data.user);
+      }
     }).catch((e) => {
-      alert(e);
+        alert(e);
     });
-    // if(Cookies.get('userId')){
-    //   console.log("cookie found", Cookies.get('userId'))
-    // } else {
-    //   console.log("setting cookie", userName);
-    //   Cookies.set('userId', 1, { expires: 7 });
-    // }
+  }
+
+  const onRegister = async (event) => {
+    event.preventDefault();
+    const user = { userName, email, password, passwordConfirmation };
+
+    await axios.post('/auth/register', { 
+      user
+    }
+    ).then((res) => {
+      if(res.data.user) {
+        setUser(res.data.user);
+      }
+    }).catch((e) => {
+        alert(e);
+    });
   }
 
   // This list can get long with a lot of functions.  Reducer may be a better choice
   const providerData = { 
     userName,
     setUserName,
+    email,
+    setEmail,
     password,
     setPassword,
-    onLogin
+    passwordConfirmation,
+    setPasswordConfirmation,
+    onLogin,
+    onRegister
   };
 
   // We can now use this as a component to wrap anything
