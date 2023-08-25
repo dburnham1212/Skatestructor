@@ -13,19 +13,22 @@ export default function AuthProvider(props) {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [user, setUser] = useState({});
+  const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
+    // AUTO LOGIN THE USER IF THEY HAVE A COOKIE SET
     axios.post('/auth/autoLogin'
     ).then((res) => {
       if(res.data.user) {
         setUser(res.data.user);
-        console.log(res.data.user)
+        setAuthenticated(true);
       }
     }).catch((e) => {
         alert(e);
     });
   }, [])
 
+  // WHEN SUBMITTING LOGIN FORM 
   const onLogin = async (event) => {
     event.preventDefault();
     const loginUser = { userName, password }
@@ -36,13 +39,14 @@ export default function AuthProvider(props) {
     ).then((res) => {
       if(res.data.user) {
         setUser(res.data.user);
-        console.log(res.data.user)
+        setAuthenticated(true);
       }
     }).catch((e) => {
         alert(e);
     });
   }
 
+  // WHEN SUBMITTING REGISTER FORM
   const onRegister = async (event) => {
     event.preventDefault();
     const user = { userName, email, password, passwordConfirmation };
@@ -53,6 +57,7 @@ export default function AuthProvider(props) {
     ).then((res) => {
       if(res.data.user) {
         setUser(res.data.user);
+        setAuthenticated(true);
       }
     }).catch((e) => {
         alert(e);
@@ -71,6 +76,8 @@ export default function AuthProvider(props) {
     setPassword,
     passwordConfirmation,
     setPasswordConfirmation,
+    authenticated,
+    setAuthenticated,
     onLogin,
     onRegister
   };
