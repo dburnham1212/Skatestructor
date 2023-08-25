@@ -6,11 +6,13 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 import './App.css';
+import AuthProvider from "./providers/AuthProvider";
 
 
 function App() {
   return (
     <div>
+      <AuthProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -24,7 +26,7 @@ function App() {
           <Route path="register" element={<Register/>}/>
         </Routes>
       </BrowserRouter>
-      
+      </AuthProvider>
     </div>
   );
 }

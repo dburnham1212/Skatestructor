@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.post('/login', (req, res) => {
-  const { userName, password } = req.body.user;
+  const { userName, password } = req.body.loginUser;
   users
     .getUserByUserName(userName)
     .then((user) => {
@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
     const user = req.body.user;
 
     const createdUser = await users.getUserByUserNameOrEmail(user.userName, user.email);
-    console.log(createdUser);
+
     if (createdUser) {
       return res.status(400).json({ error: 'Username or email already registered'});
     } else if (user.password !== user.passwordConfirmation) {

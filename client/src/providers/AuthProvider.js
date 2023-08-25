@@ -13,18 +13,19 @@ export default function AuthProvider(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   const onLogin = async (event) => {
     event.preventDefault();
-    const user = { userName, password }
+    const loginUser = { userName, password }
 
     await axios.post('/auth/login', { 
-      user
+      loginUser
     }
     ).then((res) => {
       if(res.data.user) {
         setUser(res.data.user);
+        console.log(res.data.user)
       }
     }).catch((e) => {
         alert(e);
@@ -49,6 +50,8 @@ export default function AuthProvider(props) {
 
   // This list can get long with a lot of functions.  Reducer may be a better choice
   const providerData = { 
+    user,
+    setUser,
     userName,
     setUserName,
     email,

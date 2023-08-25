@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../stylesheets/profile.css"
 import { authContext } from "../providers/AuthProvider";
 
@@ -6,6 +6,10 @@ const Profile = () => {
   const {
     user
   } = useContext(authContext);
+
+  useEffect(() => {
+    console.log(user);
+  }, [])
 
   return (
     <div className="bg-light container-fluid border border-dark rounded-bottom border-top-0 py-3">

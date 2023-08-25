@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return(
@@ -20,7 +21,7 @@ const NavBar = () => {
         <div className="collapse navbar-collapse mx-4" id="navbarNav">
           <ul className="navbar-nav me-auto">
             <li className="nav-item active">
-              <a className="nav-link text-light" href="/">Home</a>
+              <Link className="nav-link text-light" to="/">Home</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link text-light" href="#">Profile</a>
@@ -28,10 +29,10 @@ const NavBar = () => {
           </ul>
           <ul className="navbar-nav d-flex justify-content-end">
             <li className="nav-item">
-              <a className="nav-link text-light" href="/login">Login</a>
+              <Link className="nav-link text-light" to="/login">Login</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light" href="/register">Register</a>
+              <Link className="nav-link text-light" to="/register">Register</Link>
             </li>
           </ul>
         </div>
