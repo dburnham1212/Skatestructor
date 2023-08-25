@@ -64,6 +64,18 @@ export default function AuthProvider(props) {
     });
   }
 
+  const onLogout = async () => {
+    await axios.post('/auth/logout')
+    .then((res) => {
+      setUser({});
+      setAuthenticated(false);
+    })
+    .catch((e) => {
+      alert(e);
+    });
+    
+  }
+
   // This list can get long with a lot of functions.  Reducer may be a better choice
   const providerData = { 
     user,
@@ -79,7 +91,8 @@ export default function AuthProvider(props) {
     authenticated,
     setAuthenticated,
     onLogin,
-    onRegister
+    onRegister,
+    onLogout
   };
 
   // We can now use this as a component to wrap anything

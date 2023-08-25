@@ -24,7 +24,6 @@ router.post('/login', (req, res) => {
 
 router.post('/autoLogin', async (req, res) => {
   try {
-    console.log(req.session.userId)
     if(req.session.userId) {
       const user = await users.getUserById(req.session.userId);
       res.json({user});
@@ -33,6 +32,15 @@ router.post('/autoLogin', async (req, res) => {
       res.status(500).json({ error: error.message});
   };
 });
+
+router.post("/logout", async (req, res) => {
+  try {
+    req.session = null;
+    res.status(200).json({ message: "logout successful "});
+  } catch(error) {
+    res.status(500).json({ error: error.message});
+  };
+})
 
 
 router.post('/register', async (req, res) => {
