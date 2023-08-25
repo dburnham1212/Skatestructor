@@ -8,11 +8,12 @@ router.post('/login', (req, res) => {
   users
     .getUserByUserName(userName)
     .then((user) => {
-      if(user && bcrypt.compareSync(password, user.password)) {
-        res.json({ user });
-      } else {
+      if(!user || !bcrypt.compareSync(password, user.password)) {
         res.status(401).json({ error: "Incorrect email/password"});
       }
+
+      req.session.userId = user.id;
+      res.json({ user });
     })
     .catch((e) => {
       res.status(500).json({
@@ -20,6 +21,19 @@ router.post('/login', (req, res) => {
       });
     });
 });
+
+router.post('/autoLogin', async (req, res) => {
+  try {
+    console.log(req.session.userId)
+    if(req.session.userId) {
+      const user = await users.getUserById(req.session.userId);
+      res.json({user});
+    }
+  } catch(error) {
+      res.status(500).json({ error: error.message});
+  };
+});
+
 
 router.post('/register', async (req, res) => {
   try {
@@ -34,7 +48,7 @@ router.post('/register', async (req, res) => {
     }
 
     user.password = bcrypt.hashSync(user.password, saltRounds);
-
+    req.session.userId = user.id;
     const result = users.createUser(user);
     res.json({result});
   } catch(error) {

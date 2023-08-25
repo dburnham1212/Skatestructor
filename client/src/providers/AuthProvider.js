@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useState, useEffect, createContext} from 'react';
-import Cookies from 'js-cookie';
 import axios from 'axios';
 
 // Create a Context
@@ -14,6 +13,18 @@ export default function AuthProvider(props) {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [user, setUser] = useState({});
+
+  useEffect(() => {
+    axios.post('/auth/autoLogin'
+    ).then((res) => {
+      if(res.data.user) {
+        setUser(res.data.user);
+        console.log(res.data.user)
+      }
+    }).catch((e) => {
+        alert(e);
+    });
+  }, [])
 
   const onLogin = async (event) => {
     event.preventDefault();

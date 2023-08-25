@@ -1,5 +1,4 @@
 import React, { useContext, useState }from "react";
-import Cookies from 'js-cookie'
 import { authContext } from "../providers/AuthProvider";
 
 const Login = () => {
