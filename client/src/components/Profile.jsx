@@ -7,10 +7,6 @@ const Profile = () => {
     user
   } = useContext(authContext);
 
-  useEffect(() => {
-    console.log(user);
-  }, [])
-
   return (
     <div className="bg-light container-fluid border border-dark rounded-bottom border-top-0 py-3">
       <div className="row m-2">

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../providers/AuthProvider";
 
 const NavBar = () => {
+  const {
+    authenticated
+  } = useContext(authContext);
+
   return(
     <nav className="navbar navbar-expand-md navbar-light fixed-top bg-dark py-4">
       <div className="container-fluid">
@@ -27,6 +32,13 @@ const NavBar = () => {
               <a className="nav-link text-light" href="#">Profile</a>
             </li>
           </ul>
+          {authenticated ? 
+          <ul className="navbar-nav d-flex justify-content-end">
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="/login">Logout</Link>
+            </li>
+          </ul>
+          :
           <ul className="navbar-nav d-flex justify-content-end">
             <li className="nav-item">
               <Link className="nav-link text-light" to="/login">Login</Link>
@@ -35,6 +47,7 @@ const NavBar = () => {
               <Link className="nav-link text-light" to="/register">Register</Link>
             </li>
           </ul>
+          }
         </div>
       </div>
     </nav>
