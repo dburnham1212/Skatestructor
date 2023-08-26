@@ -67,8 +67,10 @@ export default function AuthProvider(props) {
   const onLogout = async () => {
     await axios.post('/auth/logout')
     .then((res) => {
-      setUser({});
-      setAuthenticated(false);
+      if(res.status === 200){
+        setUser({});
+        setAuthenticated(false);
+      }
     })
     .catch((e) => {
       alert(e);
