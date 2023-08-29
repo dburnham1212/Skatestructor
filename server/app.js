@@ -9,9 +9,10 @@ const cookieSession = require('cookie-session');
 
 const userRoutes = require('./routes/usersRoutes');
 const authRoutes = require('./routes/authRoutes');
-const trickRoutes = require('./routes/trickRoutes')
-const trickInstructionRoutes = require('./routes/trickInstructionRoutes')
-const challengeRoutes = require('./routes/challengeRoutes')
+const trickRoutes = require('./routes/trickRoutes');
+const trickInstructionRoutes = require('./routes/trickInstructionRoutes');
+const challengeRoutes = require('./routes/challengeRoutes');
+const challengeRecordsRoutes = require('./routes/challengeRecordsRoutes')
 
 const app = express();
 app.use(morgan(ENVIRONMENT));
@@ -32,6 +33,7 @@ app.use('/auth', authRoutes);
 app.use('/tricks', trickRoutes);
 app.use('/trickInstruction', trickInstructionRoutes);
 app.use('/challenge', challengeRoutes);
+app.use('/challengeRecords', challengeRecordsRoutes);
 
 app.listen(PORT, (error) => {
   if(!error){
