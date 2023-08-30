@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 import ProgressBar from "../ProgressBar";
+import { authContext } from "../../providers/AuthProvider";
 
 const ChallengePage = () => {
+
+  const {
+    user
+  } = useContext(authContext);
+
   const { trick_id, challenge_id } = useParams();
 
   const [trickInstructions, setTrickInstructions] = useState([])
   const [trick, setTrick] = useState({});
   const [challenge, setChallenge] = useState({});
+  const [challengeRecord, setChallengeRecord] = useState(null);
 
   useEffect(() => {
     // GET THE CURRENT TRICK
@@ -48,7 +55,33 @@ const ChallengePage = () => {
     .catch((e) => {
       alert(e);
     });
+
+    //GET THE CHALLENGE RECORD IF THERE IS ONE
+    axios.get(`/challengeRecords/user/${user.id}/challenge/${challenge_id}`)
+    .then((res) => {
+      console.log(res.data)
+      setChallengeRecord(res.data.challengeRecord)
+    })
+    .catch((e) => {
+      alert(e);
+    });
   }, [])
+
+  const saveChallengeRecord = () => {
+    if (!challengeRecord) {
+      // CREATE A RECORD 
+      axios.post(`/challengeRecords/user/${user.id}/challenge/${challenge_id}`)
+      .then((res) => {
+        console.log(res.data)
+        setChallengeRecord(res.data.challengeRecord)
+      })
+      .catch((e) => {
+        alert(e);
+      });
+
+
+    }
+  }
 
   const trickInstructionDisplay = trickInstructions.map((instruction, index) => {
     return(
@@ -63,11 +96,11 @@ const ChallengePage = () => {
     <div>
       <ProgressBar/>
       <div className="card m-3">
-        <div className="card-header d-flex justify-content-between">
-          <h4>Challenge: {challenge.title}</h4>
-          <h4>{trick.trick_name}</h4>       
+        <div className="card-header text-center">
+          <h4>Trick: {trick.trick_name}</h4>
         </div>
         <div className="card-body">
+          <h4>Challenge: {challenge.title}</h4>
           <p>{challenge.description}</p>
         </div>
         <div className="card-footer">
@@ -77,7 +110,7 @@ const ChallengePage = () => {
             <div className="d-flex align-items-center gap-2">
               <h6>Mark Completed: </h6>
               <button className="btn btn-light">
-                <FontAwesomeIcon className="text-success" icon={faCheck} />
+                <FontAwesomeIcon className="text-success" icon={faCheck} onClick={() => saveChallengeRecord()}/>
               </button>
             </div>
           </div>
