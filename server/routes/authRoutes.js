@@ -57,7 +57,7 @@ router.post('/register', async (req, res) => {
 
     user.password = bcrypt.hashSync(user.password, saltRounds);
     req.session.userId = user.id;
-    const result = users.createUser(user);
+    const result = await users.createUser(user);
     res.json({result});
   } catch(error) {
       res.status(500).json({ error: error.message});

@@ -78,8 +78,6 @@ const ChallengePage = () => {
       .catch((e) => {
         alert(e);
       });
-
-
     }
   }
 

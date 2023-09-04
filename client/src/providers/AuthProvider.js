@@ -55,8 +55,8 @@ export default function AuthProvider(props) {
       user
     }
     ).then((res) => {
-      if(res.data.user) {
-        setUser(res.data.user);
+      if(res.data.result) {
+        setUser(res.data.result);
         setAuthenticated(true);
       }
     }).catch((e) => {

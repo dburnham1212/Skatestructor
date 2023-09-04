@@ -3,9 +3,7 @@ import { authContext } from "../providers/AuthProvider";
 
 const Login = () => {
   const {
-    userName,
     setUserName,
-    password,
     setPassword,
     onLogin
   } = useContext(authContext);
@@ -24,9 +22,6 @@ const Login = () => {
           <div className="form-group pt-4">
             <label className="form-label">Password</label>
             <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password"></input>
-          </div>
-          <div className="text-danger pt-2">
-            Invalid Credentials
           </div>
           <div className="d-flex justify-content-end mx-2 my-4">
             <button className="btn btn-dark" onClick={(e) => onLogin(e)}>Login</button>
