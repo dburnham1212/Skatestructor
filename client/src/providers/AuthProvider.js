@@ -14,6 +14,7 @@ export default function AuthProvider(props) {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [user, setUser] = useState({});
   const [authenticated, setAuthenticated] = useState(false);
+  const [authenticationError, setAuthenticationError] = useState(false);
 
   useEffect(() => {
     // AUTO LOGIN THE USER IF THEY HAVE A COOKIE SET
@@ -42,7 +43,13 @@ export default function AuthProvider(props) {
         setAuthenticated(true);
       }
     }).catch((e) => {
+      console.log(e)
+      if(e.response.status == 500)
+      {
         alert(e);
+      } else {
+        setAuthenticationError(true);
+      }
     });
   }
 
@@ -92,6 +99,8 @@ export default function AuthProvider(props) {
     setPasswordConfirmation,
     authenticated,
     setAuthenticated,
+    authenticationError,
+    setAuthenticationError,
     onLogin,
     onRegister,
     onLogout

@@ -5,6 +5,7 @@ const Login = () => {
   const {
     setUserName,
     setPassword,
+    authenticationError,
     onLogin
   } = useContext(authContext);
  
@@ -23,6 +24,10 @@ const Login = () => {
             <label className="form-label">Password</label>
             <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password"></input>
           </div>
+          {authenticationError && 
+            <h6 className="text-danger my-2">Authentication Error: Invalid Credentials</h6>
+            
+          }
           <div className="d-flex justify-content-end mx-2 my-4">
             <button className="btn btn-dark" onClick={(e) => onLogin(e)}>Login</button>
           </div>
